@@ -16,4 +16,3 @@ def sort_by_date(data: List[Dict[str, Any]], descending: bool = True) -> List[Di
     return sorted(
         data, key=lambda x: datetime.fromisoformat(x["date"]) if x.get("date") else datetime.min, reverse=descending
     )
-
