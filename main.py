@@ -1,4 +1,4 @@
-from src import widget, processing
+from src import processing
 
 print_num_account = input()
 input_date = input()
@@ -12,6 +12,3 @@ transactions = [
 
 print(processing.filter_by_state(transactions))
 print(processing.sort_by_date(transactions))
-
-print(widget.mask_account_card(print_num_account))
-print(widget.get_date(input_date))
