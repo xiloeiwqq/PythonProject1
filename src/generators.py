@@ -36,3 +36,4 @@ for description in descriptions:
 generator = card_number_generator()
 for _ in range(5):
     print(next(generator))
+

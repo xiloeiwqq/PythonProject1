@@ -46,3 +46,4 @@ def test_card_number_generator(card_generator):
     first_number = next(card_generator)
     assert len(first_number) == 19
     assert first_number[:4] == "0000"
+
