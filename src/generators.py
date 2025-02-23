@@ -31,3 +31,4 @@ transactions = [
     {"index": 3, "amount": 150, "currency": "USD"},
     {"index": 4, "amount": 1400, "currency": "RUB"}
 ]
+
