@@ -8,15 +8,19 @@ from src.generators import filter_by_currency, transaction_descriptions, card_nu
     [
         (
             [
-                {"index": 1, "amount": 900, "currency": "USD"},
-                {"index": 2, "amount": 400, "currency": "EUR"},
-                {"index": 3, "amount": 150, "currency": "USD"},
-                {"index": 4, "amount": 1400, "currency": "RUB"},
+                {"index": 1, "amount": 900, "currency_code": "USD"},
+                {"index": 2, "amount": 400, "currency_code": "EUR"},
+                {"index": 3, "amount": 150, "currency_code": "USD"},
+                {"index": 4, "amount": 1400, "currency_code": "RUB"},
             ],
             "USD",
-            [{"index": 1, "amount": 900, "currency": "USD"}, {"index": 3, "amount": 150, "currency": "USD"}],
+            [{"index": 1, "amount": 900, "currency_code": "USD"}, {"index": 3, "amount": 150, "currency_code": "USD"}],
         ),
-        ([{"index": 1, "amount": 900, "currency": "USD"}, {"index": 3, "amount": 150, "currency": "USD"}], "EUR", []),
+        (
+            [{"index": 1, "amount": 900, "currency_code": "USD"}, {"index": 3, "amount": 150, "currency_code": "USD"}],
+            "EUR",
+            []
+        ),
     ],
 )
 def test_filter_by_currency(transactions: List[Dict], currency: str, expected: List[Dict]):
@@ -39,7 +43,9 @@ def test_transaction_descriptions(transactions: List[Dict], expected: List[str])
 
 @pytest.fixture
 def card_generator():
-    return card_number_generator()
+    start = 0
+    stop = 10
+    return card_number_generator(start, stop+1)
 
 
 def test_card_number_generator(card_generator):
@@ -49,4 +55,3 @@ def test_card_number_generator(card_generator):
 
 
 """проверка все функций модуля generators"""
-

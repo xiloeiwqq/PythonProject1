@@ -2,7 +2,7 @@ from typing import List, Dict, Iterator
 
 
 def filter_by_currency(transactions: List[Dict], currency: str) -> Iterator[Dict]:
-    return (transaction for transaction in transactions if transaction.get("currency") == currency)
+    return (transaction for transaction in transactions if transaction.get("currency_code") == currency)
 
 
 """принимает на вход список словарей, представляющих транзакции"""
@@ -16,7 +16,7 @@ def transaction_descriptions(transactions: List[Dict]) -> Iterator[str]:
 
 
 def card_number_generator(start: int, stop:int) -> Iterator[str]:
-    for number in range(1, 10**16):
+    for number in range(start, stop+1):
         yield (
             f"{number:016}"[:4] + " " + f"{number:016}"[4:8] + " " + f"{number:016}"[8:12] + " " + f"{number:016}"[12:]
         )
