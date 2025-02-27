@@ -21,7 +21,7 @@ from src.generators import card_number_generator, filter_by_currency, transactio
         (
             [{"index": 1, "amount": 900, "currency_code": "USD"}, {"index": 3, "amount": 150, "currency_code": "USD"}],
             "EUR",
-            []
+            [],
         ),
     ],
 )
@@ -47,7 +47,7 @@ def test_transaction_descriptions(transactions: List[Dict], expected: List[str])
 def card_generator():
     start = 0
     stop = 10
-    return card_number_generator(start, stop+1)
+    return card_number_generator(start, stop + 1)
 
 
 def test_card_number_generator(card_generator):
