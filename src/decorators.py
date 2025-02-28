@@ -13,13 +13,11 @@ def log(filename=None):
             except Exception as e:
                 message = f"{func.__name__} error: {e.__class__.__name__}, {args}, {kwargs}\n"
                 result = None
-
             if filename:
                 with open(filename, "w", encoding="utf-8") as f:  # Изменено на "w"
                     f.write(message)
             else:
                 print(message)
-
             return result
 
         return wrapper
