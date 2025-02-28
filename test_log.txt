@@ -1,1 +1,1 @@
-error_function ok
+test_func error: ZeroDivisionError, (0,), {}
