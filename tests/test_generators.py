@@ -1,7 +1,5 @@
 from typing import Dict, List
-
 import pytest
-
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
@@ -36,19 +34,15 @@ def test_filter_by_currency(transactions: List[Dict], currency: str, expected: L
     assert list(filter_by_currency(transactions, currency)) == expected
 
 
-def filter_by_currency(transactions, currency):
-    return [t for t in transactions if t["operationAmount"]["currency"]["code"] == currency]
-
-
 @pytest.mark.parametrize(
     "transactions, expected",
     [
         (
             [
-                {"id": 939719570, "operationAmount": {"amount": "9824.07", "currency": {"code": "USD"}}},
-                {"id": 142264268, "operationAmount": {"amount": "79114.93", "currency": {"code": "USD"}}},
+                {"id": 939719570, "operationAmount": {"amount": "9824.07", "currency": {"code": "USD"}}, "description": "Перевод организации"},
+                {"id": 142264268, "operationAmount": {"amount": "79114.93", "currency": {"code": "USD"}}, "description": "Перевод со счета на счет"},
             ],
-            ["Transaction 939719570: 9824.07 USD", "Transaction 142264268: 79114.93 USD"],
+            ["Перевод организации", "Перевод со счета на счет"],
         ),
         ([], []),
     ],
@@ -57,17 +51,12 @@ def test_transaction_descriptions(transactions: List[Dict], expected: List[str])
     assert list(transaction_descriptions(transactions)) == expected
 
 
-@pytest.fixture
-def card_generator():
-    start = 0
-    stop = 10
-    return card_number_generator(start, stop + 1)
-
-
-def test_card_number_generator(card_generator):
-    first_number = next(card_generator)
-    assert len(first_number) == 19
-    assert first_number[:4] == "0000"
-
-
-"""проверка всех функций модуля generators"""
+@pytest.mark.parametrize(
+    "start, stop, expected",
+    [
+        (0, 0, ["0000 0000 0000 0000"]),
+        (1, 2, ["0000 0000 0000 0001", "0000 0000 0000 0002"]),
+    ],
+)
+def test_card_number_generator(start: int, stop: int, expected: List[str]):
+    assert list(card_number_generator(start, stop)) == expected
