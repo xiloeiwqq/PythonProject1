@@ -9,25 +9,19 @@ def filter_by_currency(transactions: List[Dict], currency: str) -> Iterator[Dict
         if transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency
     )
 
-"""принимает на вход список словарей, представляющих транзакции"""
-
 
 def transaction_descriptions(transactions: List[Dict]) -> Iterator[str]:
+    """принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
     for transaction in transactions:
         yield transaction['description']
 
 
-"""принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
-
-
 def card_number_generator(start: int, stop: int) -> Iterator[str]:
+    """выдает номера банковских карт в формате XXXX XXXX XXXX XXXX"""
     for number in range(start, stop + 1):
         yield (
             f"{number:016}"[:4] + " " + f"{number:016}"[4:8] + " " + f"{number:016}"[8:12] + " " + f"{number:016}"[12:]
         )
-
-
-"""выдает номера банковских карт в формате XXXX XXXX XXXX XXXX"""
 
 
 transactions = [
