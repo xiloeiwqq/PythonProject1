@@ -1,5 +1,7 @@
 from typing import Dict, List
+
 import pytest
+
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
@@ -39,8 +41,16 @@ def test_filter_by_currency(transactions: List[Dict], currency: str, expected: L
     [
         (
             [
-                {"id": 939719570, "operationAmount": {"amount": "9824.07", "currency": {"code": "USD"}}, "description": "Перевод организации"},
-                {"id": 142264268, "operationAmount": {"amount": "79114.93", "currency": {"code": "USD"}}, "description": "Перевод со счета на счет"},
+                {
+                    "id": 939719570,
+                    "operationAmount": {"amount": "9824.07", "currency": {"code": "USD"}},
+                    "description": "Перевод организации",
+                },
+                {
+                    "id": 142264268,
+                    "operationAmount": {"amount": "79114.93", "currency": {"code": "USD"}},
+                    "description": "Перевод со счета на счет",
+                },
             ],
             ["Перевод организации", "Перевод со счета на счет"],
         ),
