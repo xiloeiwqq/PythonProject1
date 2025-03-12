@@ -13,7 +13,7 @@ def filter_by_currency(transactions: List[Dict], currency: str) -> Iterator[Dict
 def transaction_descriptions(transactions: List[Dict]) -> Iterator[str]:
     """принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
     for transaction in transactions:
-        yield transaction['description']
+        yield transaction["description"]
 
 
 def card_number_generator(start: int, stop: int) -> Iterator[str]:
