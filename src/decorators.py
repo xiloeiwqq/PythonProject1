@@ -3,7 +3,6 @@ import functools
 
 def log(filename=None):
     """декоратор логирования вызовов функций"""
-
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -19,32 +18,23 @@ def log(filename=None):
             else:
                 print(message)
             return result
-
         return wrapper
-
     return decorator
-
-
-"""декоратор логирования вызовов функций"""
 
 
 @log("mylog.txt")
 def my_function(x, y):
+    """функция складывания"""
     return x + y
 
 
 my_function(1, 2)
 
 
-"""функция складывания"""
-
-
 @log()
 def error_function(x):
+    """функция деления на ноль"""
     return 1 / x
 
 
 error_function(0)
-
-
-"""функция деления на ноль"""
